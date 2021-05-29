@@ -1,28 +1,23 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import multer from 'multer'; 
 
-import { Category } from '../modules/category/models/Category';
+import { CreateCategoryController } from '../modules/cars/useCases/createCategory/CreateCategoryController';
+import { ImportCategoryController } from '../modules/cars/useCases/importCategory/ImportCategoryController';
+import { ListCategoriesController } from '../modules/cars/useCases/listCategories/ListCategoriesController';
 
-const categoriesRouter = Router();
+const categoriesRoute = Router();
 
-const categories: Category[] = [];
-
-categoriesRouter.post('/', (request: Request, response: Response) => {
-  const { name, description } = request.body;
-
-  const category = new Category();
-  Object.assign(category, {
-    name,
-    description,
-    created_at: new Date(),
-  });
-
-  categories.push(category);
-
-  return response.status(201).json({ 'sucess': category }); // eslint-disable-line
+const upload = multer({
+  dest: './tmp',
 });
+const createCategoryController = new CreateCategoryController();
+const listCategoriesController = new ListCategoriesController();
+const importCategoryController = new ImportCategoryController();
 
-categoriesRouter.get('/', (request: Request, response: Response) => (
-  response.status(201).json({ 'sucess': categories }) // eslint-disable-line
-));
+categoriesRoute.post('/', createCategoryController.handle);
 
-export { categoriesRouter };
+categoriesRoute.get('/', listCategoriesController.handle);
+
+categoriesRoute.post('/import', upload.single('file'), importCategoryController.handle);
+
+export { categoriesRoute };

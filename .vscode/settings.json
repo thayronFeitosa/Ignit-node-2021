@@ -1,9 +1,0 @@
-{
-  "emmet.excludeLanguages": [
-
-    "markdown"
-  ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-}
