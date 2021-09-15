@@ -26,6 +26,7 @@ class ImportCategoryUseCase {
 
       parseFile.on('data', async (line) => {
         const [name, description] = line;
+        
         categories.push({
           name,
           description,
@@ -33,7 +34,7 @@ class ImportCategoryUseCase {
       })
         .on('end', () => {
           fs.promises.unlink(file.path);
-          resolve(categories);
+          resolve(categories);          
         }).on('error', (err) => {
           reject(err);
         });

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../shared/errors/AppError';
 
 import { ISpecificationRepository } from '../../repositories/ISpecificationRepository';
 
@@ -13,7 +14,7 @@ class CreateSpecificationUseCase {
     const epecificationArealyExists = this.specificationRepository.findByName(name);
 
     if (epecificationArealyExists) {
-      throw new Error('Specification arealy exists');
+      throw new AppError('Specification arealy exists', 400);
     }
 
     this.specificationRepository.create({
