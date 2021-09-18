@@ -27,3 +27,7 @@
 
   ***
   <h1>Application</h1>
+
+  <p>
+    Foi aprendido os conceitos de como criar uma nova migration, como deletar dados de uma tabela ja existente
+  </p>

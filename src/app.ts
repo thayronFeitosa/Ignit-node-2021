@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import 'express-async-errors';
+import './shared/container';
+import './shared/infra/database';
 
 import express from 'express';
 import cors from 'cors';
 
-import './shared/infra/database';
-import './shared/container';
 import { router } from './routes';
 import { AppError } from './shared/errors/AppError';
 
