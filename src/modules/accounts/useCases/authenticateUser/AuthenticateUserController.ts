@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import { container } from 'tsyringe';
-import { AppError } from '../../../../shared/errors/AppError';
+import { AppError } from 'shared/errors/AppError';
 import { AuthenticateUserUseCase } from './AuthenticateUserUserCase';
 
 const MESSAGE_PARAMETER_REQUIRED: string = "Email and Password Required";
