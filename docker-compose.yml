@@ -18,7 +18,7 @@ services:
     build: .
     container_name: rentx
     ports: 
-      - 8080:8080
+      - 3333:3333
     volumes: 
       - .:/usr/app
     links:

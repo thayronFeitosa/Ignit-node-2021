@@ -1,8 +1,8 @@
-import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../shared/errors/AppError";
-import { UsersRepository } from "../../repositories/implementations/UsersRepository";
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../shared/errors/AppError";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   email: string;
@@ -24,7 +24,7 @@ const MESSAGE_ERROR_AUTHENTICATION_INVALID_PASS: string = "Email or password not
 class AuthenticateUserUseCase {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: UsersRepository
+    private usersRepository: IUsersRepository
   ) { }
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -50,4 +50,5 @@ class AuthenticateUserUseCase {
   }
 }
 
-export { AuthenticateUserUseCase }
+export { AuthenticateUserUseCase };
+
